@@ -11,6 +11,25 @@
  */
 
 
+namespace App{
+/**
+ * App\Event
+ *
+ * @property int $id
+ * @property string $titulo
+ * @property string $descripcion
+ * @property string $fecha
+ * @method static \Illuminate\Database\Eloquent\Builder|Event newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Event newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Event query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereDescripcion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereFecha($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereTitulo($value)
+ */
+	class Event extends \Eloquent {}
+}
+
 namespace App\Models{
 /**
  * App\Models\Admin
@@ -36,35 +55,23 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Client
+ * App\Models\Category
  *
  * @property int $id
  * @property string $name
- * @property string $surname
- * @property string $address
- * @property int $phone
- * @property string $email
- * @property string $user
- * @property string $password
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Invoice> $invoices
- * @property-read int|null $invoices_count
- * @method static \Illuminate\Database\Eloquent\Builder|Client newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Client newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Client query()
- * @method static \Illuminate\Database\Eloquent\Builder|Client whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Client whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Client whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Client whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Client whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Client wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Client wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Client whereSurname($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Client whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Client whereUser($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
  */
-	class Client extends \Eloquent implements \Illuminate\Contracts\Auth\Authenticatable {}
+	class Category extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -130,13 +137,18 @@ namespace App\Models{
  * @property float $stock
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $category_id
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin> $admins
  * @property-read int|null $admins_count
+ * @property-read \App\Models\Category|null $category
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Line> $lines
  * @property-read int|null $lines_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Review> $reviews
+ * @property-read int|null $reviews_count
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
@@ -151,6 +163,33 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Review
+ *
+ * @property int $id
+ * @property int|null $user_id
+ * @property int|null $product_id
+ * @property int|null $rating
+ * @property string $comment
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \App\Models\Product|null $product
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Review newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Review newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Review query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereUserId($value)
+ */
+	class Review extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -161,9 +200,11 @@ namespace App\Models{
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property mixed $password
+ * @property string $usertype
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $accepts_marketing
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
@@ -172,6 +213,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAcceptsMarketing($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
@@ -183,7 +225,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereSurname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUsertype($value)
  */
-	class User extends \Eloquent {}
+	class User extends \Eloquent implements \Illuminate\Contracts\Auth\MustVerifyEmail {}
 }
 

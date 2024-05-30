@@ -8,8 +8,16 @@ use App\Models\Line;
 use App\Models\Product;
 use Cart;
 
+/**
+ * Controlador para gestionar el proceso de pago y confirmación de pedidos.
+ */
 class CheckoutController extends Controller
 {
+    /**
+     * Muestra la página de pago.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show()
     {
         // Obtener la información del usuario de la sesión
@@ -23,6 +31,12 @@ class CheckoutController extends Controller
         return view('checkout', compact('user', 'cartItems', 'total'));
     }
 
+    /**
+     * Procesa el pedido y crea una nueva factura.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\View
+     */
     public function placeOrder(Request $request)
     {
         // Obtener los datos del usuario de la sesión
@@ -60,13 +74,19 @@ class CheckoutController extends Controller
 
     }
 
+    /**
+     * Muestra la página de confirmación del pedido.
+     *
+     * @param  int  $invoiceId
+     * @return \Illuminate\Contracts\View\View
+     */
     public function confirmation($invoiceId)
     {
-    // Obtener la factura basada en el ID proporcionado
-    $invoice = Invoice::findOrFail($invoiceId);
+        // Obtener la factura basada en el ID proporcionado
+        $invoice = Invoice::findOrFail($invoiceId);
 
-    // Renderizar la vista de confirmación y pasar la factura
-    return view('confirmation', compact('invoice'));
+        // Renderizar la vista de confirmación y pasar la factura
+        return view('confirmation', compact('invoice'));
     }
 
 }

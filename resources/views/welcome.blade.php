@@ -34,7 +34,7 @@
 
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
                 <div class="flex justify-center">
-                    <img src="https://iili.io/JVxWjRt.jpg" alt="Ícono de videoconsola retro" width="150" height="150">
+                    <img src="https://iili.io/JPmKVWb.jpg" alt="Ícono de videoconsola retro" width="150" height="150">
                 </div>
 
 
@@ -90,7 +90,7 @@
                         <div class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                             <div>
                                 <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
-                                    <img src="https://iili.io/JVxVb9t.jpg" alt="Ícono de videoconsola retro" class="w-17 h-17">
+                                    <img src="https://iili.io/JPmJ5Ij.png" alt="Ícono de videoconsola retro" class="w-17 h-17">
                                 </div>
                         
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Videoconsolas Retro</h2>
@@ -109,9 +109,7 @@
                         &nbsp;
                     </div>
 
-                    <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-                    </div>
+                    
                 </div>
             </div>
         </div>

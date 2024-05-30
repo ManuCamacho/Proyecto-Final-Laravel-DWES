@@ -11,7 +11,7 @@
                     @else
                         @foreach ($invoices as $invoice)
                             <div class="mb-8">
-                                <p class="text-lg font-bold">Número de Factura: {{ $invoice->id }}</p>
+                                <p class="text-lg font-bold">Número de Factura: {{ $invoice->id }} &nbsp; &nbsp; &nbsp; &nbsp;  <a href="{{ route('invoices.download', $invoice->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Descargar Factura {{ $invoice->id }}</a></p>
                                 <p class="text-sm">Fecha: {{ $invoice->date }}</p>
                                 <p class="text-sm">Total: {{ $invoice->total }}€</p>
 
@@ -35,6 +35,8 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                           
+                                
                             </div>
                         @endforeach
                     @endif

@@ -13,21 +13,58 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex justify-between items-center w-full">
                     <div class="space-x-8 items-center">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        @unless(Auth::user() && Auth::user()->usertype === 'admin')
+                        <x-nav-link :href="(Auth::user() && Auth::user()->usertype === 'admin') ? route('admin.dashboard') : route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Inicio') }}
+                        </x-nav-link>                        
+                        @endunless
+                        @unless(Auth::user() && Auth::user()->usertype === 'user')
+                        <x-nav-link href="/admin/dashboard" :active="request()->is('admin/dashboard')">
+                            {{ __('Inicio Admin') }}
                         </x-nav-link>
+                        @endunless
                         <x-nav-link :href="route('products.list')" :active="request()->routeIs('products.list')">
                             {{ __('Productos') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
-                            {{ __('Mis Facturas') }}
+                        <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                            {{ __('Calendario') }}
                         </x-nav-link>
+                        @unless(Auth::user() && Auth::user()->usertype === 'admin')
+                        <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+                         {{ __('Mis Facturas') }}
+                         </x-nav-link>
+                        @endunless
+                        @unless(Auth::user() && Auth::user()->usertype === 'user')
+                        <x-nav-link href="/admin/users" :active="request()->is('admin/users')">
+                            {{ __('Usuarios') }}
+                        </x-nav-link>
+                        @endunless
+                        @unless(Auth::user() && Auth::user()->usertype === 'user')
+                        <x-nav-link :href="route('categories.index')" :active="request()->routeIs('admin.categories.index')">
+                            {{ __('Categorías') }}
+                        </x-nav-link>
+                        @endunless
+
+                       <!-- Enlace para enviar correos de marketing, visible solo para administradores -->
+                        @if(Auth::user() && Auth::user()->usertype === 'admin')
+                        <x-nav-link :href="route('marketing.send')" :active="request()->routeIs('marketing.send')">
+                            {{ __('Enviar Publicidad') }}
+                        </x-nav-link>
+                        @endif
+
+                        
+
+                        
+
                     </div>
+                    @if(Auth::user() && Auth::user()->usertype === 'user')
 
                     <a href="{{ route('cart.list') }}" class="flex items-center space-x-1">
                         <svg class="w-5 h-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><circle cx="13.5" cy="29.5" r="2.5" fill="currentColor" class="clr-i-solid clr-i-solid-path-1"/><circle cx="26.5" cy="29.5" r="2.5" fill="currentColor" class="clr-i-solid clr-i-solid-path-2"/><path fill="currentColor" d="M33.1 6.39a1 1 0 0 0-.79-.39H9.21l-.45-1.43a1 1 0 0 0-.66-.65L4 2.66a1 1 0 1 0-.59 1.92L7 5.68l4.58 14.47l-1.63 1.34l-.13.13A2.66 2.66 0 0 0 9.74 25A2.75 2.75 0 0 0 12 26h16.69a1 1 0 0 0 0-2H11.84a.67.67 0 0 1-.56-1l2.41-2h15.43a1 1 0 0 0 1-.76l3.2-13a1 1 0 0 0-.22-.85Z" class="clr-i-solid clr-i-solid-path-3"/><path fill="none" d="M0 0h36v36H0z"/></svg>
                        <span class="text-gray-700">{{ Cart::getTotalQuantity()}}</span> 
                     </a>
+                    @endif
+
                 </div>
 
             </div>

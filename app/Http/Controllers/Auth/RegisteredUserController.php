@@ -34,10 +34,14 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:25'],
             'surname' => ['required', 'string', 'max:25'],
             'address' => ['required', 'string', 'max:100'],
-            'phone' => ['required', 'string','min:9', 'max:9'],
+            'phone' => ['required', 'string','min:9', 'max:9','unique:users'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'accepts_marketing' => ['sometimes', 'boolean'],
+
         ]);
+        $accepts_marketing = $request->input('accepts_marketing') == '1' ? true : false;
+
 
         $user = User::create([
             'name' => $request->name,
@@ -46,6 +50,8 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'accepts_marketing' => $accepts_marketing,
+
         ]);
 
         event(new Registered($user));

@@ -172,6 +172,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+
 
     ])->toArray(),
 
@@ -188,8 +190,12 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade\Pdf::class
+
 
     ])->toArray(),
+
+    
 
 ];

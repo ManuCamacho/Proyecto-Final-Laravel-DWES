@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+/**
+ * Controlador para la gestión del carrito de compras.
+ */
 class CartController extends Controller
 {
-    // Método para mostrar la lista de productos en el carrito
+    /**
+     * Muestra la lista de productos en el carrito.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function cartList()
     {
         // Obtener los elementos del carrito usando la clase Cart
@@ -16,7 +23,12 @@ class CartController extends Controller
         return view('cart', compact('cartItems'));
     }
 
-    // Método para añadir un producto al carrito
+    /**
+     * Añade un producto al carrito.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addToCart(Request $request)
     {
         // Encontrar el producto basado en el ID proporcionado en la solicitud
@@ -42,7 +54,12 @@ class CartController extends Controller
         return redirect()->route('cart.list');
     }
 
-    // Método para actualizar la cantidad de un producto en el carrito
+    /**
+     * Actualiza la cantidad de un producto en el carrito.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateCart(Request $request)
     {
         // Obtener el elemento del carrito basado en el ID proporcionado en la solicitud
@@ -75,7 +92,12 @@ class CartController extends Controller
         return redirect()->route('cart.list');
     }
 
-    // Método para eliminar un producto del carrito
+    /**
+     * Elimina un producto del carrito.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function removeCart(Request $request)
     {
         // Eliminar el producto del carrito basado en el ID proporcionado en la solicitud
@@ -84,7 +106,11 @@ class CartController extends Controller
         return redirect()->route('cart.list');
     }
 
-    // Método para vaciar completamente el carrito
+    /**
+     * Vacía completamente el carrito.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function clearAllCart()
     {
         // Limpiar todos los elementos del carrito
