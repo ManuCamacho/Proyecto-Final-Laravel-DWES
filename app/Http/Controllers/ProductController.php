@@ -20,51 +20,52 @@ class ProductController extends Controller
      * @return \Illuminate\View\View
      */
 
-    public function productList(Request $request)
-    {
-        // Consulta todos los productos con stock mayor que 0
-        $products = Product::where('stock', '>', 0);
-
-        // Filtrar por nombre si se proporciona un valor de búsqueda
-        if ($request->has('search')) {
-            $searchTerm = $request->input('search');
-            $products->where('name', 'like', '%' . $searchTerm . '%');
-        }
-
-        // Filtrar por categoría si se selecciona una categoría
-        if ($request->has('category')) {
-            $categoryId = $request->input('category');
-            if (!empty($categoryId)) {
-                $products->where('category_id', $categoryId);
-            }
-        }
-
-        // Ordenar los productos
-        if ($request->has('orderBy')) {
-            $orderBy = $request->input('orderBy');
-            if ($orderBy === 'asc' || $orderBy === 'desc') {
-                $products->orderBy('name', $orderBy);
-            } elseif ($orderBy === 'price_asc' || $orderBy === 'price_desc') {
-                $direction = $orderBy === 'price_asc' ? 'asc' : 'desc';
-                $products->orderBy('price', $direction);
-            } elseif ($orderBy === 'stock_asc' || $orderBy === 'stock_desc') {
-                $direction = $orderBy === 'stock_asc' ? 'asc' : 'desc';
-                $products->orderBy('stock', $direction);
-            }
-        }
-
-        // Obtener los productos
-        $products = $products->get();
-
-        // Obtener todas las categorías
-        $categories = Category::all();
-
-        // Verificar si no se encontraron resultados
-        $noResults = $products->isEmpty();
-
-        // Pasar las variables a la vista
-        return view('products', compact('products', 'noResults', 'categories'));
-    }
+     public function productList(Request $request)
+     {
+         // Consulta todos los productos con stock mayor que 0
+         $products = Product::where('stock', '>', 0);
+     
+         // Filtrar por nombre si se proporciona un valor de búsqueda
+         if ($request->has('search')) {
+             $searchTerm = $request->input('search');
+             $products->where('name', 'like', '%' . $searchTerm . '%');
+         }
+     
+         // Filtrar por categoría si se selecciona una categoría
+         if ($request->has('category')) {
+             $categoryId = $request->input('category');
+             if (!empty($categoryId)) {
+                 $products->where('category_id', $categoryId);
+             }
+         }
+     
+         // Ordenar los productos
+         if ($request->has('orderBy')) {
+             $orderBy = $request->input('orderBy');
+             if ($orderBy === 'asc' || $orderBy === 'desc') {
+                 $products->orderBy('name', $orderBy);
+             } elseif ($orderBy === 'price_asc' || $orderBy === 'price_desc') {
+                 $direction = $orderBy === 'price_asc' ? 'asc' : 'desc';
+                 $products->orderBy('price', $direction);
+             } elseif ($orderBy === 'stock_asc' || $orderBy === 'stock_desc') {
+                 $direction = $orderBy === 'stock_asc' ? 'asc' : 'desc';
+                 $products->orderBy('stock', $direction);
+             }
+         }
+     
+         // Obtener los productos con paginación (12 productos por página)
+         $products = $products->paginate(12);
+     
+         // Obtener todas las categorías
+         $categories = Category::all();
+     
+         // Verificar si no se encontraron resultados
+         $noResults = $products->isEmpty();
+     
+         // Pasar las variables a la vista
+         return view('products', compact('products', 'noResults', 'categories'));
+     }
+     
 
     /**
      * Muestra la página principal del panel de administración de productos.

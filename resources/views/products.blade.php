@@ -88,5 +88,10 @@
                 </div>
             @endforeach
         </div>
+
+        <!-- Enlaces de paginación -->
+        <div class="mt-8">
+            {{ $products->links() }}
+        </div>
     </div>
 </x-app-layout>
