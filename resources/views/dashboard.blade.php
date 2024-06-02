@@ -61,6 +61,12 @@
                     </div>
                 </div>
             </div><br>
+                  <!-- Insertar video en lugar de "aaaaa" -->
+                  <video controls class="w-full h-156 object-cover rounded-t-lg">
+                    <source src="{{ asset('videos/video.mp4') }}" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video><br>
+
             <img src="https://iili.io/JVfbPwJ.jpg" alt="Producto 1" class="w-full h-56 object-cover rounded-t-lg"><br>
              <!-- Sección de Productos Destacados -->
              <h2 class="text-3xl font-bold text-gray-800 mb-6">Productos Destacados Sony</h2>

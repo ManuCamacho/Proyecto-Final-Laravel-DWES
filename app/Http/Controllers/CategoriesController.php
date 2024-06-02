@@ -33,11 +33,19 @@ class CategoriesController extends Controller
             'name' => 'required|string|max:255|unique:categories',
         ]);
 
-        $category = new Category;
-        $category->name = $request->name;
-        $category->save();
+        try {
+            $category = new Category;
+            $category->name = $request->name;
+            $category->save();
 
-        return redirect()->route('categories.index')->with('success', 'Categoría creada correctamente.');
+            // Relacionar la categoría con el usuario autenticado
+            $user = auth()->user();
+            $category->users()->attach($user);
+
+            return redirect()->route('categories.index')->with('success', 'Categoría creada correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->route('categories.index')->with('error', 'Error al crear la categoría: ' . $e->getMessage());
+        }
     }
 
     /**

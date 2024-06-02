@@ -33,15 +33,8 @@
                             <input type="text" name="name" class="form-control" id="new_name" placeholder="Nuevo Nombre">
                         </div>
                         <button type="submit" class="btn btn-primary">Actualizar</button>
-                    </form>
-                    
-                    
-                    
-                    
-                    
-
+                    </form>       
                     <hr>
-
                     <h1 class="mb-4 mt-4">Eliminar Categoría</h1>
                     <form action="{{ route('categories.destroy', ['id' => $category->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar la categoría seleccionada?');">
                         @csrf

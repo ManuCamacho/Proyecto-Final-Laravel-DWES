@@ -96,12 +96,16 @@
         </div>
     </div>
 
+    <!-- Elemento de audio -->
+    <audio id="successSound" src="{{ asset('sounds/valoracion.mp3') }}" preload="auto"></audio>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const stars = document.querySelectorAll('.rating-stars .fa-star');
             const ratingInput = document.getElementById('rating');
             const ratingError = document.getElementById('ratingError');
             const reviewForm = document.getElementById('reviewForm');
+            const successSound = document.getElementById('successSound');
 
             stars.forEach(star => {
                 star.addEventListener('click', function () {
@@ -128,6 +132,10 @@
                     event.preventDefault();
                 }
             });
+
+            @if(Session::has('success'))
+                successSound.play();
+            @endif
         });
     </script>
 </x-app-layout>

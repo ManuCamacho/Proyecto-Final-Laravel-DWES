@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Review;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use App\Models\User;
 
 
 
@@ -138,6 +139,13 @@ class ProductController extends Controller
 
     try {
         $product = Product::create($productData);
+
+                    // Obtener el ID del usuario autenticado
+                    $userId = auth()->id();
+                    $user = User::find($userId);
+        
+                    // Relacionar el producto con el usuario
+                    $product->users()->attach($user);
     
         // Producto creado con éxito
         session()->flash('success', 'Producto añadido correctamente.');
