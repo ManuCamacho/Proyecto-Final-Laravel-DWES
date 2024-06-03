@@ -1,5 +1,3 @@
-<!-- resources/views/invoices.blade.php -->
-
 <x-app-layout>
     <main class="my-8">
         <div class="container px-6 mx-auto">

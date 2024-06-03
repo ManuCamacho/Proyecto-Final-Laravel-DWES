@@ -90,17 +90,5 @@
             </div>
         </div>
     </div>
-    <script>
-        function toggleImageField() {
-            var fileUpload = document.getElementById('fileUpload');
-            var imageUrl = document.querySelector('input[name="image"]');
-            if (fileUpload.style.display === 'none') {
-                fileUpload.style.display = 'block';
-                imageUrl.style.display = 'none';
-            } else {
-                fileUpload.style.display = 'none';
-                imageUrl.style.display = 'block';
-            }
-        }
-    </script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </x-app-layout>

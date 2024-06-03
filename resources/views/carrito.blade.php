@@ -30,7 +30,6 @@
                             <p>No hay productos en el carrito.</p>
                         @endif
                         
-                        <!-- Aquí puedes agregar otros elementos de tu interfaz de usuario, como un botón para realizar el pago -->
                     </body>
                     </html>
                     

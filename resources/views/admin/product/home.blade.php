@@ -1,33 +1,5 @@
 <x-app-layout>
-    <style>
-        /* Definición de las clases de colores para los diferentes rangos de stock */
-        .bg-danger {
-            background-color: #dc3545 !important; /* Rojo */
-            color: white !important; /* Texto blanco */
-        }
-
-        .bg-warning {
-            background-color: #f7882d !important; /* Naranja */
-            color: white !important; /* Texto blanco */
-        }
-
-        .bg-yellow {
-            background-color: #fcfa6a !important; /* Amarillo */
-            color: black !important; /* Texto negro */
-        }
-
-        .bg-success {
-            background-color: #28a745 !important; /* Verde */
-            color: white !important; /* Texto blanco */
-        }
-
-        /* Clase para centrar y agrandar el texto */
-        .stock-cell {
-            font-size: 1.5rem; /* Tamaño de fuente más grande */
-            text-align: center; /* Texto centrado */
-        }
-    </style>
-
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

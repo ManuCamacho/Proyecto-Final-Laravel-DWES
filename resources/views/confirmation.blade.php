@@ -1,5 +1,3 @@
-<!-- resources/views/confirmation.blade.php -->
-
 <x-app-layout>
     <div class="container mx-auto">
         <div class="my-8">
