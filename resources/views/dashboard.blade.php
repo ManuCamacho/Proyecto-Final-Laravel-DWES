@@ -61,7 +61,6 @@
                     </div>
                 </div>
             </div><br>
-                  <!-- Insertar video en lugar de "aaaaa" -->
                   <video controls class="w-full h-156 object-cover rounded-t-lg">
                     <source src="{{ asset('videos/video.mp4') }}" type="video/mp4">
                     Tu navegador no soporta el elemento de video.

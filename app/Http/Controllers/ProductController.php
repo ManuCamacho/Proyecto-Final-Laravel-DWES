@@ -103,7 +103,7 @@ class ProductController extends Controller
 
     // Validar los datos del formulario
     $validation = $request->validate([
-        'name' => 'required',
+        'name' => 'required|unique:products', // Asegura que el nombre del producto sea único en la tabla de productos
         'price' => 'required|numeric|min:1',
         'description' => 'required',
         'image' => 'required', // Requerir una imagen
@@ -184,7 +184,7 @@ class ProductController extends Controller
     {
     // Validar los datos del formulario
     $validation = $request->validate([
-        'name' => 'required',
+        'name' => 'required|unique:products', // Asegura que el nombre del producto sea único en la tabla de productos
         'price' => 'required|numeric|min:1',
         'description' => 'required',
         'stock' => 'required|integer|min:0',
@@ -245,11 +245,15 @@ class ProductController extends Controller
             return redirect(route('admin.products.index'));
         }
     }
+          /**
+             * Muestra los productos.
+             *
+             * @param  int  $id
+             * @return \Illuminate\Http\RedirectResponse
+             */
 
-        public function categories()
-        {
-            return $this->belongsToMany(Category::class);
-        }
+     
+
         public function show($id)
         {
             $product = Product::findOrFail($id);
@@ -330,6 +334,7 @@ class ProductController extends Controller
 
             return redirect()->back()->with('success', 'Reseña creada exitosamente.');
         }
+        
 
 
 

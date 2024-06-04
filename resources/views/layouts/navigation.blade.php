@@ -114,33 +114,82 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+<!-- Responsive Navigation Menu -->
+<div :class="{'block': open, 'hidden': !open}" class="hidden sm:hidden">
+    <div class="pt-2 pb-3 space-y-1">
+        <!-- Enlaces del menú desplegable -->
+
+        <!-- Enlace "Inicio" para usuarios no administradores -->
+        @unless(Auth::user() && Auth::user()->usertype === 'admin')
+        <x-responsive-nav-link :href="(Auth::user() && Auth::user()->usertype === 'admin') ? route('admin.dashboard') : route('dashboard')" :active="request()->routeIs('dashboard')">
+            {{ __('Inicio') }}
+        </x-responsive-nav-link>
+        @endunless
+
+        <!-- Enlace "Inicio Admin" para usuarios no administradores -->
+        @unless(Auth::user() && Auth::user()->usertype === 'user')
+        <x-responsive-nav-link href="/admin/dashboard" :active="request()->is('admin/dashboard')">
+            {{ __('Inicio Admin') }}
+        </x-responsive-nav-link>
+        @endunless
+
+        <!-- Enlace "Productos" -->
+        <x-responsive-nav-link :href="route('products.list')" :active="request()->routeIs('products.list')">
+            {{ __('Productos') }}
+        </x-responsive-nav-link>
+
+        <!-- Enlace "Calendario" -->
+        <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
+            {{ __('Calendario') }}
+        </x-responsive-nav-link>
+
+        <!-- Enlace "Mis Facturas" para usuarios no administradores -->
+        @unless(Auth::user() && Auth::user()->usertype === 'admin')
+        <x-responsive-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+            {{ __('Mis Facturas') }}
+        </x-responsive-nav-link>
+        @endunless
+
+        <!-- Enlace "Usuarios" para usuarios no administradores -->
+        @unless(Auth::user() && Auth::user()->usertype === 'user')
+        <x-responsive-nav-link href="/admin/users" :active="request()->is('admin/users')">
+            {{ __('Usuarios') }}
+        </x-responsive-nav-link>
+        @endunless
+
+        <!-- Enlace "Categorías" para usuarios no administradores -->
+        @unless(Auth::user() && Auth::user()->usertype === 'user')
+        <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('admin.categories.index')">
+            {{ __('Categorías') }}
+        </x-responsive-nav-link>
+        @endunless
+
+        <!-- Enlace "Enviar Publicidad" solo para administradores -->
+        @if(Auth::user() && Auth::user()->usertype === 'admin')
+        <x-responsive-nav-link :href="route('marketing.send')" :active="request()->routeIs('marketing.send')">
+            {{ __('Enviar Publicidad') }}
+        </x-responsive-nav-link>
+        @endif
+    </div>
+
+    <!-- Responsive Settings Options -->
+    <div class="pt-4 pb-1 border-t border-gray-200">
+        <div class="px-4">
+            <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+            <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
         </div>
 
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
+        <div class="mt-3 space-y-1">
+            <!-- Authentication -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                    {{ __('Cerrar Sesión') }}
+                </x-responsive-nav-link>
+            </form>
         </div>
     </div>
+</div>
+
+
 </nav>

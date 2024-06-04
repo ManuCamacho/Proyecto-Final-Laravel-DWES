@@ -97,15 +97,13 @@
   @endforeach
   
 
-    </div> <!-- /container -->
+    </div> 
 
     <!-- Footer -->
 <footer class="page-footer font-small blue pt-4">
 
-  <!-- Copyright -->
 
 </footer>
-<!-- Footer -->
 
   </body>
 </html>
