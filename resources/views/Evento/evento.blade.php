@@ -57,15 +57,15 @@
                         @csrf
                         @method('DELETE')
                         <div class="form-group">
-                            <label for="titulo"><h4>Título:</h4></label>
+                            <label for="titulo"><h4 style="color: #3B82F6;">Título:</h4></label>
                             <p>{{ $event->titulo }}</p>
                         </div>
                         <div class="form-group">
-                            <label for="descripcion"><h4>Descripción del Evento:</h4></label>
+                            <label for="descripcion"><h4 style="color: #3B82F6;">Descripción del Evento:</h4></label>
                             <p>{{ $event->descripcion }}</p>
                         </div>
                         <div class="form-group">
-                            <label for="fecha"><h4>Fecha:</h4></label>
+                            <label for="fecha"><h4 style="color: #3B82F6;">Fecha:</h4></label>
                             <p>{{ $event->fecha }}</p>
                         </div><br>
                         <div id="countdown" class="mb-3"></div><br>

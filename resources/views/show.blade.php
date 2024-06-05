@@ -66,9 +66,7 @@
                     </form>
                 </div>
             </div>
-            <div class="mt-4">
-                <button onclick="window.history.back()" class="inline-block text-center bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 transition duration-300">Atrás</button>
-            </div>
+
             <div class="mt-8">
                 <h2 class="text-xl font-bold text-gray-900 mb-4">Resumen del Producto:</h2>
                 <ul class="list-disc list-inside text-gray-700">
@@ -136,6 +134,7 @@
             @if(Session::has('success'))
                 successSound.play();
             @endif
+            
         });
     </script>
 </x-app-layout>

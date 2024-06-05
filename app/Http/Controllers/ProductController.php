@@ -106,7 +106,7 @@ class ProductController extends Controller
         'name' => 'required|unique:products', // Asegura que el nombre del producto sea único en la tabla de productos
         'price' => 'required|numeric|min:1',
         'description' => 'required',
-        'image' => 'required', // Requerir una imagen
+        'image' => 'required', 
         'stock' => 'required|integer|min:1',
         'category_id' => 'required|exists:categories,id', // Validar que la categoría seleccionada existe en la tabla de categorías
 
@@ -184,11 +184,11 @@ class ProductController extends Controller
     {
     // Validar los datos del formulario
     $validation = $request->validate([
-        'name' => 'required|unique:products', // Asegura que el nombre del producto sea único en la tabla de productos
+        'name' => 'required', // Asegura que el nombre del producto sea único en la tabla de productos
         'price' => 'required|numeric|min:1',
         'description' => 'required',
         'stock' => 'required|integer|min:0',
-        'category_id' => 'required|exists:categories,id', // Validar que la categoría seleccionada existe en la tabla de categorías
+        'category_id' => 'required|exists:categories,id', // Valida que la categoría seleccionada existe en la tabla de categorías
     ]);
 
     try {

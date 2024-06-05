@@ -16,6 +16,6 @@ class Line extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'id_product'); // Asegúrate de especificar la clave foránea correcta
+        return $this->belongsTo(Product::class, 'id_product'); 
     }
 }

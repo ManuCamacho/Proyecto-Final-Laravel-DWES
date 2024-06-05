@@ -26,7 +26,7 @@
                                 <th>Apellido</th>
                                 <th>Email</th>
                                 <th>Tipo</th>
-                                <th>Publicidad</th> <!-- Nueva columna -->
+                                <th>Publicidad</th> 
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -47,7 +47,7 @@
                                             </select>
                                         </form>
                                     </td>
-                                    <td class="align-middle">{{ $user->accepts_marketing ? 'Sí' : 'No' }}</td> <!-- Nueva columna -->
+                                    <td class="align-middle">{{ $user->accepts_marketing ? 'Sí' : 'No' }}</td> 
                                     <td class="align-middle">
                                         <!-- Botón para eliminar usuario -->
                                         <form action="{{ route('users.destroy', $user->id) }}" method="post">

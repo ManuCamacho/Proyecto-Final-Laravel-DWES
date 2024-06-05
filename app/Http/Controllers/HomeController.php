@@ -16,7 +16,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Retorna la vista del panel de administración
         return view('admin.dashboard');
     }
 }

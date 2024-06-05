@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 /**
  * Controlador para la gestión de categorías.
@@ -80,11 +81,16 @@ class CategoriesController extends Controller
         $request->validate([
             'category_id' => 'required|exists:categories,id',
         ]);
-
+    
         try {
             $category = Category::findOrFail($request->category_id);
+            
+            // Actualizar los productos asociados a la categoría para que no tengan categoría
+            Product::where('category_id', $category->id)->update(['category_id' => null]);
+            
             $category->delete();
-            return redirect()->route('categories.index')->with('success', 'Categoría eliminada correctamente.');
+    
+            return redirect()->route('categories.index')->with('success', 'Categoría eliminada correctamente. Los productos asociados ahora están sin categoría.');
         } catch (\Exception $e) {
             return redirect()->route('categories.index')->with('error', 'Error al eliminar la categoría: ' . $e->getMessage());
         }

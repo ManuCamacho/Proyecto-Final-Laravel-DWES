@@ -23,7 +23,7 @@
       font-weight: bold;
     }
     .header-calendar{
-      background: #1a365d;color:white;
+      background: #1E3A8A;color:white;
     }
     .box-day{
       border:1px solid #E3E9E5;
@@ -99,11 +99,7 @@
 
     </div> 
 
-    <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
 
-
-</footer>
 
   </body>
 </html>

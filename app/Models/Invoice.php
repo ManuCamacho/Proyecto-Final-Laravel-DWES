@@ -22,6 +22,6 @@ class Invoice extends Model
 
     public function lines()
     {
-        return $this->hasMany(Line::class, 'id_invoice'); // Asegúrate de especificar la clave foránea correcta
+        return $this->hasMany(Line::class, 'id_invoice'); 
     }
 }

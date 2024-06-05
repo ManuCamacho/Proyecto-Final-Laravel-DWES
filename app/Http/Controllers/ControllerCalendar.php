@@ -91,11 +91,9 @@ class ControllerCalendar extends Controller
         $iweek = 0;
         while ($iweek < $semana):
             $iweek++;
-            //echo "Semana $iweek <br>";
-            //
+            
             $weekdata = [];
             for ($iday=0; $iday < 7 ; $iday++){
-                // code...
                 $datafecha = date("Y-m-d",strtotime($datafecha."+ 1 day"));
                 $datanew['mes'] = date("M", strtotime($datafecha));
                 $datanew['dia'] = date("d", strtotime($datafecha));

@@ -32,8 +32,8 @@ class ControllerEvent extends Controller
         $this->validate($request, [
             'titulo'     =>  'required',
             'descripcion'  =>  'required',
-            'fecha' =>  'required'
-        ]);
+            'fecha'        => 'required|date|after:today'
+                  ]);
 
         // Creación del evento
         Event::insert([
@@ -183,16 +183,12 @@ public static function calendar_month($month){
   $iweek = 0;
   while ($iweek < $semana):
       $iweek++;
-      //echo "Semana $iweek <br>";
-      //
       $weekdata = [];
       for ($iday=0; $iday < 7 ; $iday++){
-        // code...
         $datafecha = date("Y-m-d",strtotime($datafecha."+ 1 day"));
         $datanew['mes'] = date("M", strtotime($datafecha));
         $datanew['dia'] = date("d", strtotime($datafecha));
         $datanew['fecha'] = $datafecha;
-        //AGREGAR CONSULTAS EVENTO
         $datanew['evento'] = Event::where("fecha",$datafecha)->get();
 
         array_push($weekdata,$datanew);

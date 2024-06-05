@@ -17,6 +17,7 @@
                     </form>
 
                     <hr>
+                    <h1 class="mb-4">Actualizar Categoría</h1>
 
                     <form action="{{ route('categories.update', ['category' => 0]) }}" method="POST">
                         @csrf

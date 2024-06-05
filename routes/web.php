@@ -66,7 +66,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
     Route::get('/confirmation/{invoiceId}', [CheckoutController::class, 'confirmation'])->name('confirmation');
     Route::get('/invoices/{invoice}/download', [InvoiceController::class, 'download'])->name('invoices.download');
-    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
 
     Route::get('Calendar/event/{mes}', 'ControllerCalendar@index_month');
     Route::get('Calendar/event', 'ControllerCalendar@index');
@@ -132,6 +131,7 @@ Route::middleware('auth', 'verified')->group(function () {
     })->middleware('auth');
     
     Route::post('/send-marketing-email', [MarketingController::class, 'sendMarketingEmail'])->name('marketing.send');
+    
 });
 
 require __DIR__.'/auth.php';

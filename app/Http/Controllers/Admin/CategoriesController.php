@@ -51,7 +51,6 @@ class CategoriesController extends Controller
             'name' => $request->name,
         ]);
 
-        // Redirigir a la lista de categorías con un mensaje de éxito
         return redirect()->route('categories.index')->with('success', 'Categoría creada exitosamente.');
     }
 
@@ -90,7 +89,6 @@ class CategoriesController extends Controller
             'name' => $request->name,
         ]);
 
-        // Redirigir a la lista de categorías con un mensaje de éxito
         return redirect()->route('categories.index')->with('success', 'Categoría actualizada exitosamente.');
     }
 
@@ -108,7 +106,6 @@ class CategoriesController extends Controller
         // Eliminar la categoría
         $category->delete();
 
-        // Redirigir a la lista de categorías con un mensaje de éxito
         return redirect()->route('categories.index')->with('success', 'Categoría eliminada exitosamente.');
     }
 }

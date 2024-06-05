@@ -1,5 +1,12 @@
 <x-app-layout>
     <div class="container px-12 py-8 mx-auto">
+        <style>
+            .product-image {
+                width: 750px;
+                height: 627px;
+                object-fit: cover; 
+            }
+        </style>
         <!-- Formulario de búsqueda y filtrado -->
         <form method="GET" action="{{ route('products.list') }}" class="max-w-lg mx-auto">
             <div class="flex items-center border-b border-b-2 border-blue-500 py-2">
